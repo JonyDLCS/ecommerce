@@ -8,20 +8,25 @@
   --background-end-rgb: 255, 255, 255;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+
+#snsLogo{
+  width: 120px;
+  height: auto;
+  transition: all 0.5s;
 }
 
+#snsLogo:hover #Capa_2-2 path{
+  fill: #a21caf;
+}
+
+#Capa_1-2 path{
+  fill: black;
+}
+
+#Capa_2-2 path{
+  fill: black;
+}
+
+
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
 }
