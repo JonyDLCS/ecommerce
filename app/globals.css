@@ -8,16 +8,40 @@
   --background-end-rgb: 255, 255, 255;
 }
 
+body, html {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+#mainBanner{
+  width: calc(100% - 4rem);
+  
+}
+#mainBanner img{
+  transition: all 500ms ease-out;
+}
+#tagBanner{
+  transition: color 400ms;
+}
+
+#mainBanner:hover img{
+  transform: scale(120%);
+}
+#mainBanner:hover #tagBanner{
+  color: rgb(124, 45, 18);
+}
 
 #snsLogo{
   width: 120px;
   height: auto;
   transition: all 0.5s;
+  cursor: pointer;
 }
 
 #snsLogo:hover #Capa_2-2 path{
-  fill: #a21caf;
+  fill: rgb(154, 52, 18);
 }
+
 
 #Capa_1-2 path{
   fill: black;
@@ -28,5 +52,30 @@
 }
 
 
-body {
+.productName{
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+          line-clamp: 2; 
+  -webkit-box-orient: vertical;
+}
+
+.imagePreview img{
+  transition: all 300ms ease-in-out;
+}
+
+.productPreview:hover .imagePreview img{
+  transform: scale(110%);
+}
+
+.pricePreview{
+  transition: all 200ms;
+}
+
+.productPreview:hover .pricePreview {
+  color: rgb(124, 45, 18);
+}
+
+#hermosilloBanner{
+  width: calc(100% - 3rem);
 }
