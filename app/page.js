@@ -6,11 +6,15 @@ import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { GiDoubleNecklace } from "react-icons/gi";
 import { FaHands } from "react-icons/fa";
 import { GiNecklaceDisplay } from "react-icons/gi";
+import { FaInstagram } from "react-icons/fa";
+import ListProducts from '@/components/listProducts';
+import Footer from '@/components/Footer';
+import NavBar from '@/components/NavBar';
 
 export default function Home() {
 
 
-  const products = [
+  const productx = [
     { id: 1, image: 'mainNecklace.jpg', name: 'Cadena con dijes circulares', price: 0 },
     { id: 2, image: 'hanmade.jpg', name: 'Collar de bisutería', price: 100 },
     { id: 3, image: 'mainNecklace.jpg', name: 'Collar BOO, temática de Halloween', price: 200 },
@@ -18,20 +22,13 @@ export default function Home() {
   ];
 
   return (
-    <main className="bg-slate-00 mb-12 max-w-[920px] mx-auto">
-      <div className="  bg-white z-20  pt-8 pb-6 px-6 text-center flex justify-between items-center gap-4 w-full">
-        <SnsLogo/>
-        <ul className=' flex flex-row gap-16 font-semibold list-none items-center'>
-          <li className=' cursor-pointer hover:text-orange-800'><p>Inicio</p></li>
-          <li className=' cursor-pointer hover:text-orange-800' ><p>Productos</p></li>
-          <li className=' cursor-pointer hover:text-orange-800'><HiShoppingBag className='w-8 h-8'/></li>
-        </ul>  
-      </div>
+    <main className="bg-slate-00 max-w-[920px] mx-auto ">
+      
 
 
-      <div id='mainBanner' className=' cursor-pointer bg-orange-200 mx-auto h-56 min-w-[706px] max-w-[706px] rounded-md relative mt-24 mb-16'>
-        <p className='relative z-10 text-black font-bold uppercase text-4xl p-8 pr-[248px] text-justify leading-snug tracking-wider'>Creado a mano <br/> llevado con estilo</p>
-        <div id='tagBanner' className='pl-8 pr-[248px] flex justify-end  items-center '>
+      <div id='mainBanner' className='  cursor-pointer bg-orange-200 mx-auto h-56  rounded-md relative mt-24 mb-16 '>
+        <p className='absolute z-10 text-black font-bold uppercase text-5xl p-6 pr-[248px] text-justify leading-snug tracking-wider'>Creado a mano <br/> llevado con estilo</p>
+        <div id='tagBanner' className='pl-8 pr-[248px] pb-4 flex justify-end absolute bottom-0 right-0  items-center '>
           <p  className=' font-bold tracking-wide '>Echar un vistazo</p>
           <div className='w-10 h-10 translate-y-[1px] '>
           <MdOutlineKeyboardArrowRight className='w-full h-full'/>
@@ -43,14 +40,9 @@ export default function Home() {
       </div>
 
       <div className='flex justify-between gap-6 my-24 mx-6 pb-4 overflow-auto'>
-        {products.map(product=>(
-          <div key={product.id}  className=' productPreview  max-w-[12rem] cursor-pointer'>
-            <div  className='imagePreview w-48 h-48 rounded-md overflow-hidden'><img className=' object-cover  w-full h-full ' src={product.image}/></div>
-            <span className='pricePreview text-center block font-bold mt-4 mb-2'>${product.price}</span>
-            <p  className=' productName text-center font-semibold text-sm'>{product.name}</p>
-          </div>
-        ))}
+        <ListProducts/>
       </div>
+
 
       <section className='mx-6'>
         <div className='w-full grid grid-cols-3 '>
@@ -73,7 +65,9 @@ export default function Home() {
         </div>
       </section>
 
-
     </main>
   )
 }
+
+
+
