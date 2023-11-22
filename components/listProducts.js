@@ -8,7 +8,6 @@ export default async function ListProducts() {
 
   return (
     <>
-    {console.log(products[0].image)}
       {Array.isArray(products)? products?.length > 4
         ? products.slice(0, 4).map(product => (
             <Link key={product.slug.current} href={`/product/${product.slug.current}`} className='productPreview max-w-[12rem] cursor-pointer'>

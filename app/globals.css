@@ -79,3 +79,15 @@ body, html {
 #hermosilloBanner{
   width: calc(100% - 3rem);
 }
+
+.smallImage{
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  width: 4rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.selectedImage{
+  border:  4px solid rgb(124, 45, 18);;
+}
