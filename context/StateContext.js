@@ -91,6 +91,7 @@ export const StateContext=({children})=>{
                 incQty,
                 decQty,
                 onAdd,
+                onRemove,
                 toggleCartItemQuantity
             }
             }
