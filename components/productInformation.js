@@ -14,8 +14,8 @@ const ProductInformation = ({product}) => {
 
   return (
     <>
-        <div className='flex   mt-10'>
-            <div className='w-1/2 pr-8   overflow-hidden '>
+        <div className='flex flex-col sm:flex-row mx-auto   mt-10'>
+            <div className='w-full sm:w-1/2 pr-8   overflow-hidden '>
                 <div className=' ' >
                     <img className=' object-cover aspect-square' src={urlForImage(image && image[index]).url()}/>
                 </div>
@@ -30,7 +30,7 @@ const ProductInformation = ({product}) => {
                 </div>
                 </div>
 
-                <div className='w-1/2 product-details-desc '>
+                <div className='w-full sm:w-1/2 product-details-desc '>
                     <h1 className=' mt-8 text-5xl font-bold pb-4'>{name}</h1>
                     <h4 className=' text-xl  font-semibold'>Detalles: </h4>
                     <p className=' py-2'>{details}</p>

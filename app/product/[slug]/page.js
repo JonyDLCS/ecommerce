@@ -35,12 +35,14 @@ const ProductDetails = async ({params}) => {
     const product = res.product;
     const products = res.products;
   return (
-    <div className='max-w-[920px] mx-auto min-h-screen ' >
-        <div className='product-detail-container '>
+    <div className='max-w-[920px] mx-auto px-6 min-h-screen ' >
+        <div className='product-detail-container pb-24'>
             <ProductInformation product={product}/>
 
             <div className='maylike'>
-                <h2 className='text-3xl font-bold mt-16'>Catálogo</h2>
+                <Link href='/product' className='hover:text-orange-900 '>
+                    <h2 className='text-3xl  font-bold mt-16 mb-8 '>Catálogo</h2>
+                </Link>
                 <div className='marquee'>
                     <div className='maylike-products-container flex flex-wrap justify-center gap-4 '>
                         {products.length > 8

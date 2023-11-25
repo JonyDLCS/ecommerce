@@ -6,6 +6,8 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --footer-height: 144px;
+  --navbar-height: 108px;
 }
 
 body, html {
@@ -90,4 +92,20 @@ body, html {
 
 .selectedImage{
   border:  4px solid rgb(124, 45, 18);;
+}
+
+.cartProductName{
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+          line-clamp: 2; 
+  -webkit-box-orient: vertical;
+}
+
+.cartWhitespace{
+  height: calc(100% - 9rem);
+}
+
+.minViewWithFooter{
+  min-height: calc(100vh - var(--footer-height) - var(--navbar-height) );
 }
