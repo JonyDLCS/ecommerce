@@ -12,7 +12,7 @@ const NavBar = () => {
   const {showCart, setShowCart, totalQuantities} = useStateContext();
   return (
     <nav className="  bg-white z-20  pt-8 pb-6 px-6 h-[108px] text-center flex justify-between items-center gap-4 w-full">
-        <Link href='/'><SnsLogo/></Link>
+        <Link href='/'><SnsLogo /></Link>
         <ul className=' flex flex-row gap-16 font-semibold list-none items-center'>
           <li className='hidden sm:block cursor-pointer text-black hover:text-orange-800'><Link href='/' className= 'w-full h-full'>Inicio</Link></li>
           <li className='hidden sm:block cursor-pointer text-black hover:text-orange-800' ><Link href='/product' className= 'w-full h-full '>Products</Link></li>

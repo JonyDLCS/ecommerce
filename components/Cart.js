@@ -6,13 +6,38 @@ import {TiDeleteOutline} from 'react-icons/ti';
 import toast from "react-hot-toast";
 import { useStateContext } from "@/context/StateContext";
 import { urlForImage } from "@/sanity/lib/image";
-
+import getStripe from "@/lib/getStripe";
 
 import { IoBag } from "react-icons/io5";
 
 const Cart = () => {
   const cartRef = useRef();
   const {totalPrice, totalQuantities, onRemove,  cartItems, setShowCart, toggleCartItemQuantity} = useStateContext();
+  
+  const handleCheckout = async () =>{
+    const stripe = await getStripe();
+
+    const response = await fetch('/api/stripe',{
+
+      method: 'POST',
+      headers:{
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(cartItems)
+    })
+    if (!response.ok) {
+      // This will activate the closest `error.js` Error Boundary
+      throw new Error('Failed to fetch data')
+    }
+
+    if(response.statusCode === 500) return;
+
+    const data = await response.json()
+
+    toast.loading('Redireccionando...')
+    stripe.redirectToCheckout({sessionId: data.id})
+  }
+
   return (
     <div className="fixed z-50" ref={cartRef}>
       <div onClick={()=>setShowCart(false)} className="bg-black opacity-50 fixed  top-0 left-0 bottom-0 right-0 z-30"></div>
@@ -75,7 +100,9 @@ const Cart = () => {
         </div>
         {cartItems.length >=1 && (
           <div  className="w-full">
-            <button className="bg-black hover:bg-neutral-900 bg- text-white rounded-md text-xl font-medium py-3 w-full mt-2" type="button">
+            <button 
+            onClick={handleCheckout}
+            className="bg-black hover:bg-neutral-900 bg- text-white rounded-md text-xl font-medium py-3 w-full mt-2" type="button">
               Pagar • ${totalPrice}
             </button>
 

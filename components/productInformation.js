@@ -15,7 +15,7 @@ const ProductInformation = ({product}) => {
   return (
     <>
         <div className='flex flex-col sm:flex-row mx-auto   mt-10'>
-            <div className='w-full sm:w-1/2 pr-8   overflow-hidden '>
+            <div className='w-full sm:w-1/2 sm:pr-8   overflow-hidden '>
                 <div className=' ' >
                     <img className=' object-cover aspect-square' src={urlForImage(image && image[index]).url()}/>
                 </div>
