@@ -9,9 +9,9 @@ export default async function ListProducts() {
   return (
     <>
       {Array.isArray(products)? products?.length > 4
-        ? products.slice(0, 4).map(product => (
+        ? products.reverse().slice(0, 4).map(product => (
             <Link key={product.slug.current} href={`/product/${product.slug.current}`} className='productPreview max-w-[12rem] cursor-pointer'>
-              <div className='imagePreview w-48 h-48 rounded-md overflow-hidden'><img className='object-cover w-full h-full' src={urlForImage(product.image[0]).url} alt={product.name} /></div>
+              <div className='imagePreview w-48 h-48 rounded-md overflow-hidden'><img className='object-cover w-full h-full' src={urlForImage(product.image[0]).url()} alt={product.name} /></div>
               <span className='pricePreview text-center block font-bold mt-4 mb-2'>${product.price}</span>
               <p className='productName text-center font-semibold text-sm'>{product.name}</p>
             </Link>
@@ -31,8 +31,10 @@ export default async function ListProducts() {
   );
 }
 
+
 export async function getData() {
+  const revalidate =60;
     const query = '*[_type == "product"]';
-    const products = await client.fetch(query);
+    const products = await client.fetch(query, {next:{revalidate}});
     return JSON.parse(JSON.stringify(products));
 }

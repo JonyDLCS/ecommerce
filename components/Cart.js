@@ -25,17 +25,14 @@ const Cart = () => {
       },
       body: JSON.stringify(cartItems)
     })
-    if (!response.ok) {
-      // This will activate the closest `error.js` Error Boundary
-      throw new Error('Failed to fetch data')
-    }
-
-    if(response.statusCode === 500) return;
+    if(response.status === 500) 
+    {return};
+    
 
     const data = await response.json()
 
     toast.loading('Redireccionando...')
-    stripe.redirectToCheckout({sessionId: data.id})
+    stripe.redirectToCheckout({sessionId: data.session.id})
   }
 
   return (

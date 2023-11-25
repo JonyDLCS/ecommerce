@@ -1,5 +1,6 @@
 'use client';
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+
 import { urlForImage } from '@/sanity/lib/image';
 
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
@@ -8,16 +9,26 @@ import { useStateContext } from '@/context/StateContext';
 
 const ProductInformation = ({product}) => {
     const [index, setIndex] = useState(0);
-    const {decQty, incQty, qty, onAdd} = useStateContext();
+    const {decQty, incQty, qty, onAdd, setShowCart} = useStateContext();
     
     const {price,name,image,details} = product;
+
+
+    const handleBuyNow = () =>{
+        onAdd(product,qty);
+
+        setShowCart(true);
+    }
 
   return (
     <>
         <div className='flex flex-col sm:flex-row mx-auto   mt-10'>
-            <div className='w-full sm:w-1/2 sm:pr-8   overflow-hidden '>
+            <div className='w-full sm:w-1/2 sm:pr-8  overflow-hidden '>
                 <div className=' ' >
-                    <img className=' object-cover aspect-square' src={urlForImage(image && image[index]).url()}/>
+                    {
+                    image &&  <img className=' object-cover aspect-square' src={urlForImage(image[index]).url()}/>
+
+                }
                 </div>
                 <div className='flex gap-4 flex-wrap pt-6 w-full'>
                     {image?.map((item,i) =>(
@@ -42,7 +53,7 @@ const ProductInformation = ({product}) => {
                             <button className='minus px-4 py-1 relative w-14 h-full   cursor-pointer hover:bg-orange-300' onClick={decQty}>
                                 <AiOutlineMinus className='w-6 h-6 absolute top-1/2  left-1/2 -translate-x-1/2 -translate-y-1/2  fill-orange-900'/>
                             </button>
-                            <span className='num text-2xl relative  font-semibold px-6 py-1 border-solid border-orange-300 border-l-2 border-r-2 h-full' onClick=''>
+                            <span className='num text-2xl relative  font-semibold px-6 py-1 border-solid border-orange-300 border-l-2 border-r-2 h-full'>
                                 <span className='absolute top-1/2  left-1/2 -translate-x-1/2 -translate-y-1/2'>{qty}</span>
                             </span>
                             <button className='plus px-4 py-1 w-14 relative h-full cursor-pointer hover:bg-orange-300' onClick={incQty}>
@@ -56,7 +67,7 @@ const ProductInformation = ({product}) => {
                         <button type='button' className='add-to-cart w-full bg-orange-200 hover:bg-orange-300 border-2 rounded-md border-orange-300 text-larger font-bold tracking-widest py-2 my-2' onClick={()=> onAdd(product, qty)}>
                             Agregar al Carrito
                         </button>
-                        <button type='button' className='add-to-cart w-full bg-orange-900 hover:bg-orange-950 border-2 text-white rounded-md border-orange-950 text-larger font-bold tracking-widest py-2 my-2' onClick=''>
+                        <button type='button' className='add-to-cart w-full bg-orange-900 hover:bg-orange-950 border-2 text-white rounded-md border-orange-950 text-larger font-bold tracking-widest py-2 my-2' onClick={handleBuyNow}>
                             Comprar Ahora
                         </button>
                     </div>

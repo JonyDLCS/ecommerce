@@ -1,9 +1,11 @@
+import { NextResponse } from "next/server";
 import Stripe from "stripe";
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-export default async function handler(req, res) {
-  if (req.method === 'POST') {
-    console.log(req.body)
+
+
+export async function POST( req ){
+    const data = await req.json();
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
     try {
       // Create Checkout Sessions from body params.
       const params = {
@@ -13,7 +15,7 @@ export default async function handler(req, res) {
         shipping_options:[
             {shipping_rate: 'shr_1OGDWvJTRSIPtwc3PNQY5eWs'},
         ],
-        line_items: JSON.parse(req.body).map((item) => {
+        line_items: data.map((item) => {
             const img = item.image[0].asset._ref
             const newImage = img.replace('image-', 'https://cdn.sanity.io/images/lqbt9ugx/production/').replace('-jpg','.jpg').replace('-webp','.webp').replace('-png','.png').replace('-jpeg','.jpeg')
             return {
@@ -23,27 +25,25 @@ export default async function handler(req, res) {
                         name:item.name,
                         images: [newImage],
                     },
-                    unit_amount: item.price * 100
+                    unit_amount: item.price * 100,
                 },
                 adjustable_quantity:{
                     enabled:true,
                     minimum: 1,
                 },
-                quantity: item.quantity
+                quantity: item.quantity,
             }
         }),
         
         mode: 'payment',
-        success_url: `${req.headers.origin}/?success=true`,
-        cancel_url: `${req.headers.origin}/?canceled=true`,
+        success_url: `${req.headers.get('origin')}/?success=true`,
+        cancel_url: `${req.headers.get('origin')}/?canceled=true`,
       }
       const session = await stripe.checkout.sessions.create(params);
-      res.status(200).json(session);
+      
+      return NextResponse.json({ session: session }, { status: 200 });
+    
     } catch (err) {
-      res.status(err.statusCode || 500).json(err.message);
+      return NextResponse.json({error:err.message},{status:err.statusCode || 500})
     }
-  } else {
-    res.setHeader('Allow', 'POST');
-    res.status(405).end('Method Not Allowed');
-  }
 }

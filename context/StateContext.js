@@ -22,13 +22,15 @@ export const StateContext=({children})=>{
         const newCartItems = cartItems.filter((item)=> item._id !==id)
 
         if (value ==='inc') {
-            setCartItems([...newCartItems, {...foundProduct,
-                quantity: foundProduct.quantity +1}]);
+            setCartItems( cartItems.map((element,i)=>index===i ? {...foundProduct,quantity:foundProduct.quantity+1}: element))
+            /*setCartItems([...newCartItems,{...foundProduct,
+                quantity: foundProduct.quantity +1}]);*/
             setTotalPrice((prevTotalPrice)=> prevTotalPrice + foundProduct.price)
             setTotalQuantities((prevTotalQuantities) => prevTotalQuantities+1)
         }else if (value=== 'dec'){
             if (foundProduct.quantity > 1) {
-                setCartItems([...newCartItems, {...foundProduct,quantity: foundProduct.quantity - 1}]);
+                setCartItems( cartItems.map((element,i)=>index===i ? {...foundProduct,quantity:foundProduct.quantity-1}: element))
+                //setCartItems([...newCartItems, {...foundProduct,quantity: foundProduct.quantity - 1}]);
                 setTotalPrice((prevTotalPrice)=> prevTotalPrice - foundProduct.price)
                 setTotalQuantities((prevTotalQuantities) => prevTotalQuantities-1)
 
@@ -79,10 +81,15 @@ export const StateContext=({children})=>{
         })
     }
 
+    const resetQty = ()=>{
+        setQty((prevQty)=>1)
+    }
+
     return (
         <Context.Provider
             value={{
                 showCart,
+                resetQty,
                 setShowCart,
                 cartItems,
                 totalPrice,

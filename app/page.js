@@ -11,22 +11,19 @@ import ListProducts from '@/components/listProducts';
 import Footer from '@/components/Footer';
 import NavBar from '@/components/NavBar';
 import Link from 'next/link';
+import toast, { Toaster } from 'react-hot-toast';
+import ToastBuySuccess from '@/components/toastBuySuccess';
 
 export default function Home() {
+  
+    
 
-
-  const productx = [
-    { id: 1, image: 'mainNecklace.jpg', name: 'Cadena con dijes circulares', price: 0 },
-    { id: 2, image: 'hanmade.jpg', name: 'Collar de bisutería', price: 100 },
-    { id: 3, image: 'mainNecklace.jpg', name: 'Collar BOO, temática de Halloween', price: 200 },
-    { id: 4, image: 'hanmade.jpg', name: 'Collar BOO, temática de Halloween', price: 200 },
-  ];
 
   return (
     
     <main className="bg-slate-00 max-w-[920px] min-h-screen mx-auto ">
       
-
+      <ToastBuySuccess/>
       <Link href='/product'>
       <div id='mainBanner' className=' mt-48 sm:mt-64  cursor-pointer bg-orange-200 mx-auto h-fit sm:h-52 md:h-72 lg:h-56 pt-8 sm:pt-16 lg:pt-0  rounded-md relative lg:mt-24 mb-16 '>
         <p className='sm:absolute z-10 text-black font-bold uppercase text-2xl sm:text-4xl md:text-5xl p-6 lg:pr-[248px] text-center sm:text-left leading-snug tracking-wider'>Creado a mano llevado con estilo</p>

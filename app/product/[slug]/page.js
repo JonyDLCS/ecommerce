@@ -5,46 +5,51 @@ import { urlForImage } from '@/sanity/lib/image'
 import '@/app/globals.css'
 import Link from 'next/link';
 import ProductInformation from '@/components/productInformation';
+import { useParams } from 'next/navigation';
 
 export const dynamicParams = true;
  
 
 
 export async function generateStaticParams() {
+    const revalidate=60;
     const query = `*[_type == "product"]{
         slug{
             current
         }
     }`;
-    const products = await client.fetch(query);
+    const products = await client.fetch(query, {next:{revalidate}});
     return products.map((product) => ({
       slug: product.slug.current,
     }))
   }
 
 export async function getProducts(slug) {
-    const productsQuery = '*[_type =="product"]';
+    const revalidate = 60;
+    const productsQuery = '*[_type == "product"]';
     const query = `*[_type == "product" && slug.current =='${slug}'][0]`;
-    const product = await client.fetch(query);
-    const products = await client.fetch(productsQuery);
-    return JSON.parse(JSON.stringify({product, products}));
+    const product = await client.fetch(query, {next:{revalidate}});
+    const products = await client.fetch(productsQuery, {next:{revalidate}});
+    return JSON.parse(JSON.stringify({product: product,products: products}));
 }
 
 const ProductDetails = async ({params}) => {
     const res = await getProducts(params.slug);
-    const product = res.product;
+    const item = res.product;
     const products = res.products;
   return (
+    
     <div className='max-w-[920px] mx-auto px-6 min-h-screen ' >
+       
         <div className='product-detail-container pb-24'>
-            <ProductInformation product={product}/>
+            <ProductInformation product={item}/>
 
             <div className='maylike'>
                 <Link href='/product' className='hover:text-orange-900 '>
                     <h2 className='text-3xl  font-bold mt-16 mb-8 '>Catálogo</h2>
                 </Link>
                 <div className='marquee'>
-                    <div className='maylike-products-container flex flex-wrap justify-center gap-4 '>
+                    <div className='maylike-products-container flex overflow-auto justify-start gap-4 '>
                         {products.length > 8
                         ? 
                         products.slice(0,8).map((product) =>{
