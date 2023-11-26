@@ -2,7 +2,7 @@
 > [!TIP]
 > This project is available on the web, go take a look 👉 [SyS Webpage](https://sys-ecommerce.vercel.app/).
 
-This is an ecommerce for a handmade necklace shop. It was built using Sanity as a headless CMS to manage the content of products 📂, NextJS as the framework of React 🛠 and also Stripe to allow full secure payments 🔒. 
+This is an ecommerce for a handmade necklace shop. It was built using Sanity as a headless CMS to manage the content of products 📂, NextJS as the framework of React 🛠 (using JavaScript), Stripe to allow full secure payments 🔒 and Tailwind to help with the styling process 🎨 (also CSS). 
 
 It involves context provider for shared data across the app, API connection with Sanity and Stripe, landing page, cart, products page, details page for every product, payment screen provided by Stripe.
 
