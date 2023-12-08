@@ -15,7 +15,7 @@ const NavBar = () => {
         <Link href='/'><SnsLogo /></Link>
         <ul className=' flex flex-row gap-16 font-semibold list-none items-center'>
           <li className='hidden sm:block cursor-pointer text-black hover:text-orange-800'><Link href='/' className= 'w-full h-full'>Inicio</Link></li>
-          <li className='hidden sm:block cursor-pointer text-black hover:text-orange-800' ><Link href='/product' className= 'w-full h-full '>Products</Link></li>
+          <li className='hidden sm:block cursor-pointer text-black hover:text-orange-800' ><Link href='/product' className= 'w-full h-full '>Productos</Link></li>
           <li className=' cursor-pointer text-black hover:text-orange-800 relative'><button type='button' onClick={() => {setShowCart(true)}}><IoBag className='w-8 h-8'/><span className=' text-white  text-xs absolute left-1/2 top-1/2 -translate-y-[6px] -translate-x-1/2'>{totalQuantities}</span></button></li>
         </ul>  
         {showCart && <Cart/>}
