@@ -1,36 +1,20 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Ecommerce
+> [!TIP]
+> This project is available on the web, go take a look 👉 [SyS Webpage](https://sys-ecommerce.vercel.app/).
 
-## Getting Started
+This is an ecommerce for a handmade necklace shop. It was built using Sanity as a headless CMS to manage the content of products 📂, NextJS as the framework of React 🛠 (using JavaScript), Stripe to allow full secure payments 🔒 and Tailwind to help with the styling process 🎨 (also CSS). 
 
-First, run the development server:
+It involves context provider for shared data across the app, API connection with Sanity and Stripe, landing page, cart, products page, details page for every product, payment screen provided by Stripe.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+> (Although this is a test application, all necklaces are actually on sale so checkout their Instagram in the footer of the page. The logo was design by me, by the way 😉)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Landing Page
+![Preview Image](https://github.com/JonyDLCS/ecommerce/blob/master/preview.jpg?raw=true)
+## Details
+![Preview Details](https://github.com/JonyDLCS/ecommerce/blob/master/previewDetails.jpg?raw=true)
+## Cart
+![Preview Cart](https://github.com/JonyDLCS/ecommerce/blob/master/previewCart.jpg?raw=true)
+## Stripe
+![Preview Stripe](https://github.com/JonyDLCS/ecommerce/blob/master/stripe.jpg?raw=true)
